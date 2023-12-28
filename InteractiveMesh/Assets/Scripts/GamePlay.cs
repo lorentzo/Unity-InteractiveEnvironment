@@ -105,6 +105,7 @@ public class GamePlay : MonoBehaviour
         }
 
         // Changing Game object interaction state.
+        /*
         if (Input.GetKeyDown("space") && interactionState == InteractionStates.InteractiveElements)
         {
             if (gameObjectInteractionState == GameObjectInteractionStates.Moving)
@@ -116,9 +117,10 @@ public class GamePlay : MonoBehaviour
                 gameObjectInteractionState = GameObjectInteractionStates.Moving;
             }
         }
+        */
 
         // Scaling game object.
-        if (selectedGameObject && (gameObjectInteractionState == GameObjectInteractionStates.Scaling) && (interactionState == InteractionStates.InteractiveElements))
+        if (selectedGameObject && (interactionState == InteractionStates.InteractiveElements)) // && (gameObjectInteractionState == GameObjectInteractionStates.Scaling)
         {
             Vector3 gameObjectScale = selectedGameObject.transform.localScale;
             if (Input.GetKey("w"))
@@ -151,14 +153,19 @@ public class GamePlay : MonoBehaviour
                 gameObjectScale += Vector3.down * gameObjectScaleSensitivity;
                 Debug.Log("Scaling: " + selectedGameObject + " with q");
             }
-            if (gameObjectScale.x > 0.0f && gameObjectScale.y > 0.0f && gameObjectScale.z > 0.0f)
+            if (gameObjectScale.x > 0.0f 
+                && gameObjectScale.y > 0.0f 
+                && gameObjectScale.z > 0.0f
+                && gameObjectScale.x < 10.0f
+                && gameObjectScale.y < 10.0f
+                && gameObjectScale.z < 10.0f)
             {
                 selectedGameObject.transform.localScale = gameObjectScale;
             }
         }
 
         // Moving game object.
-        if (selectedGameObject && (gameObjectInteractionState == GameObjectInteractionStates.Moving) && interactionState == InteractionStates.InteractiveElements)
+        if (selectedGameObject && interactionState == InteractionStates.InteractiveElements) // && (gameObjectInteractionState == GameObjectInteractionStates.Moving)
         {
             if (Input.GetAxis("Mouse X") > 0.0f)
             {
