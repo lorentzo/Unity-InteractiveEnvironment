@@ -37,6 +37,7 @@ Gameplay (TODO):
 
 Interacting with environment:
 * Ray-casting for selection
+  * TODO: ray-cast layers and 4th wall
 * Scaling and translation of selected objects
 * RBD behaviour
 

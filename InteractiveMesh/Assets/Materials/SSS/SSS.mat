@@ -124,10 +124,10 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - fLTAmbient: 0.1
-    - fLTDistortion: 0.3
-    - fLTScale: 1.5
-    - fLTThickness: 0.7
+    - fLTAmbient: 1
+    - fLTDistortion: 0.1
+    - fLTScale: 1
+    - fLTThickness: 1
     - iLTPower: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
@@ -138,5 +138,5 @@ Material:
     - cDiffAlbedo: {r: 0.90342605, g: 0.9353062, b: 0.9325579, a: 1}
     - cLightDiffuse: {r: 0.9114898, g: 0.8529226, b: 0.099, a: 1}
     - cSurfaceColor: {r: 0.9019608, g: 0.62019634, b: 0.2705882, a: 1}
-    - vLightPosition: {r: 0, g: 0, b: 0, a: 1}
+    - vLightPosition: {r: -11.28, g: 6.02, b: 10.4, a: 1}
   m_BuildTextureStacks: []

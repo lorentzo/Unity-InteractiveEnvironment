@@ -33,6 +33,7 @@ public class GamePlay : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerRigidbody = player.GetComponent<Rigidbody>();
         selectedGameObject = null;
+        interactionState = InteractionStates.InteractiveElements;
         gameObjectInteractionState = GameObjectInteractionStates.Scaling;
         nonSelectableObjects = new string[] {"Player", "WallLeft", "WallRight", "WallFront", "WallBot", "WallTop", "WallBack"};
         Debug.Log("Interaction state Player.");
@@ -40,56 +41,12 @@ public class GamePlay : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (interactionState == InteractionStates.Player)
-        {
-            if (Input.GetKeyDown("w"))
-            {
-                Debug.Log("Moving player using key w.");
-                playerRigidbody.AddTorque(playerTorque, 0.0f, 0.0f); 
-            }
-            if (Input.GetKeyDown("s"))
-            {
-                Debug.Log("Moving player using key s.");
-                playerRigidbody.AddTorque(-playerTorque, 0.0f, 0.0f); 
-            }
-            if (Input.GetKeyDown("d"))
-            {
-                Debug.Log("Moving player using key d.");
-                playerRigidbody.AddTorque(0.0f, 0.0f, -playerTorque); 
-            }
-            if (Input.GetKeyDown("a"))
-            {
-                Debug.Log("Moving player using key a.");
-                playerRigidbody.AddTorque(0.0f, 0.0f, playerTorque); 
-            }
-            if (Input.GetKeyDown("space"))
-            {
-                Debug.Log("Moving player using key space.");
-                playerRigidbody.AddForce(0.0f, playerForce, 0.0f); 
-            }
-        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        // Selecting interaction state.
-        if (Input.GetKeyDown("tab"))
-        {
-            selectedGameObject = null;
-            if(interactionState == InteractionStates.Player)
-            {
-                interactionState = InteractionStates.InteractiveElements;
-                Debug.Log("Changing interaction state to Interactive Elements.");
-            }
-            else
-            {
-                interactionState = InteractionStates.Player;
-                Debug.Log("Changing interaction state to Player.");
-            }
-        }
-
         // Selecting interactive element.
         if (Input.GetMouseButtonDown(0) && interactionState == InteractionStates.InteractiveElements)
         {
@@ -98,26 +55,11 @@ public class GamePlay : MonoBehaviour
         }
 
         // Deselecting game object.
-        if (Input.GetKeyDown("escape") && interactionState == InteractionStates.InteractiveElements)
+        if (Input.GetKeyDown("escape") && interactionState == InteractionStates.InteractiveElements) // 
         {
             Debug.Log("Deselecting: " + selectedGameObject.name);
             selectedGameObject = null;
         }
-
-        // Changing Game object interaction state.
-        /*
-        if (Input.GetKeyDown("space") && interactionState == InteractionStates.InteractiveElements)
-        {
-            if (gameObjectInteractionState == GameObjectInteractionStates.Moving)
-            {
-                gameObjectInteractionState = GameObjectInteractionStates.Scaling;
-            }
-            else
-            {
-                gameObjectInteractionState = GameObjectInteractionStates.Moving;
-            }
-        }
-        */
 
         // Scaling game object.
         if (selectedGameObject && (interactionState == InteractionStates.InteractiveElements)) // && (gameObjectInteractionState == GameObjectInteractionStates.Scaling)
